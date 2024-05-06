@@ -1,24 +1,23 @@
 package com.fundraiser.fundraiser.models;
 
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.NotNull;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 @Entity
 public class User extends AbstractEntity {
-    @NotBlank(message = "Username can not be blank.")
-    @Size(min = 1, max = 25, message = "Invalid username, must be between 1-25 characters.")
+
+    private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+    @NotNull
+    private String pwHash;
+    @NotNull
     private String username;
 
-    @Email(message = "Invalid Email, try again.")
-    @NotBlank(message = "Email can not be blank.")
-    @Column(unique = true)
+    @NotNull
+    @Email
     private String email;
-
-    @NotBlank(message = "password is required.")
-    private String password;
 
 //    Default constructor
     public User(){
@@ -30,7 +29,7 @@ public class User extends AbstractEntity {
         super();
         this.username = username;
         this.email = email;
-        this. password = password;
+        this.pwHash = encoder.encode(password);
     }
 
     public String getUsername() {
@@ -49,14 +48,21 @@ public class User extends AbstractEntity {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
+    private boolean isLoggedIn = false;
+    public boolean isLoggedIn() {
+        return isLoggedIn;
+    }
+
+    public void setLoggedIn(boolean loggedIn) {
+        isLoggedIn = loggedIn;
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.pwHash = encoder.encode(password);
     }
 
-
+    public boolean isMatchingPassword(String password) {
+        return encoder.matches(password, pwHash);
+    }
 
 }
