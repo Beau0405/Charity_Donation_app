@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+
+    <title>Create a Campaign</title>
+</head>
+<body>
+<form method = 'post' th:action="@{/campaign/create}">
+    <div>
+        <label>Campaign name:
+            <input th:field="${campaign.name}"
+                   type="text"
+                   class="form-control"
+                   id = "inputName"
+                   placeholder = 'Pick an campaign name'/>
+        </label>
+        <p th:errors="${campaign.name}" class="error"></p>
+    </div>
+
+    <div>
+        <label>Campaign Description:
+            <input th:field="${campaign.description}"
+                   type="text"
+                   class="form-control"
+                   id="campaignDescription"
+                   placeholder="campaign description"/>
+        </label>
+        <span th:errors="${campaign.description}" class="error"></span>
+    </div>
+
+    <input class="submit-btn" type="submit" value="Create My Campaign!" />
+</form>
+</body>
+</html>

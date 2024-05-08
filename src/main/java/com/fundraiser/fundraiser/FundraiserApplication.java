@@ -10,4 +10,9 @@ public class FundraiserApplication {
 		SpringApplication.run(FundraiserApplication.class, args);
 	}
 
+//	@Bean
+//	public RestTemplate restTemplate(RestTemplateBuilder builder) {
+//		return builder.build();
+//	}
+
 }

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Current Campaigns</title>
+</head>
+<body>
+<table th:object="${campaigns}">
+    <thead>
+    <tr>
+        <th>All Campaigns</th>
+    </tr>
+    </thead>
+
+    <td>
+        <li th:each="campaign : ${campaigns}">
+            <a th:href="@{/events/{id}(id=${event.id})}" th:text="${campaign.campaignName}"></a>
+        </li>
+    </td>
+</table>
+</body>
+</html>

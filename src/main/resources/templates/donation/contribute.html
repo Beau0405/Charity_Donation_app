@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+
+    <title>Make a Donation</title>
+</head>
+<body>
+<form>
+    <div>
+        <label>Donation Amount:
+            <input th:field="${donation.amount}"
+                   type="text"
+                   class="form-control"
+                   id="donationAmount"
+                   placeholder="Enter your donation amount here"/>
+        </label>
+        <span th:errors="${donation.amount}" class="error"></span>
+    </div>
+
+    <input class="submit-btn" type="submit" value="Donate Now!" />
+</form>
+</body>
+</html>
