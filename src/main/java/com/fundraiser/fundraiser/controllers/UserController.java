@@ -88,7 +88,7 @@ public class UserController {
         session.setAttribute("user", newUser.getId());
         session.setAttribute("username", newUser.getUsername());
 
-        return "redirect:/campaign/create";
+        return "redirect:/list";
     }
 
     @GetMapping("login")

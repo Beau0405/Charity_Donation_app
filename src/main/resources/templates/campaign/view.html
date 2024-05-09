@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body>
+<h3 th:text="${campaign.name}"></h3>
+<h4 th:text="${campaign.description}"></h4>
+
+<form method="post" th:action="@{/campaign/view/{campaignId}}">
+    <div>
+        <label>Donation Amount</label>
+        <input th:field="${donation.amount}"
+               type="text" class="form-control"
+               id = "donationAmount" />
+    </div>
+    <input class="submit-btn" type="submit" value="Make my Donation" />
+</form>
+</body>
+</html>
